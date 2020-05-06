@@ -30,6 +30,16 @@ public class UserService {
         return users;
     }
 
+    public List<String> getUserNamesLikeString(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String intrebare = "select u.userName from User u where u.userName like : nume";
+        Query query = session.createQuery(intrebare);
+        query.setParameter("nume", "%" + name + "%");
+        List<String> users  = query.list();
+        session.close();
+        return users;
+
+    }
     public List<User> showUsersLikeName(String name) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         String intrebare = "from User u where u.userName like : nume";

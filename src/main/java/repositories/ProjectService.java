@@ -49,6 +49,16 @@ public class ProjectService {
         return project;
     }
 
+    public List<String> getProjectByIdentifierLikeString(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String queryString = "select p.identifierProject from Project p where p.identifierProject = :nume";
+        TypedQuery<String> query = session.createQuery(queryString);
+        query.setParameter("nume","%" + name + "%");
+        List<String> project = query.getResultList();
+        session.close();
+        return project;
+    }
+
     public void editProjectByName(String name, String identifierProject, String description, String oldName) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();

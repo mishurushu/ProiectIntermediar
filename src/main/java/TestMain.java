@@ -1,29 +1,27 @@
+import metods.IssueMetods;
+import metods.Login;
+import metods.ProjectMetods;
 import model.*;
 import repositories.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TestMain {
     public static void main(String[] args) {
-        /*Project projectTest = new Project("Facebook","Fbk","aplicatie de socializare");
 
-          ps.addProject(projectTest);*/
+        /*Project projectTest = new Project("Facebook","Fbk","aplicatie de socializare");
+         ps.addProject(projectTest);*/
         //TRANSIENT
        //Project newP = new Project("lifeCycle", "LFC", "someDescription");
-
        // System.out.println("ID PROJECT:" + newP.projectId);
         //Project facebook = ps.getProjectByName("Facebook");
-
         //facebook.identifierProject = "OMFG";
-
-
        // ps.addProject(newP);
         // PERSISTENT
        // System.out.println("ID PROJECT AFTER SAVING : " + newP.projectId);
-
        // ps.delete(newP);
-
         //System.out.println("ID PROJECT NOW AFTER DELETE:" + newP.projectId);
         // ps.addProject(project);
        // System.out.println(ps.showProjects("f"));
@@ -71,7 +69,6 @@ public class TestMain {
       //  StatusService statusServiceTest = new StatusService();
         //statusServiceTest.addStatus(statusTest);
      //   Type typeTest = new Type("destersaddButton");
-      //
         //typeService.addType(typeTest);
        // ProjectService ps = new ProjectService();
        // TypeService typeService = new TypeService();
@@ -91,9 +88,29 @@ public class TestMain {
 
 
         //Comment TEST
-        //User userTest = new User();
-        //UserService userServiceTest = new UserService();
-        //Comment commentTest = new Comment("Nu imi place proiectul asta",);
+       /* User userTest = new User();
+        UserService userServiceTest = new UserService();
+        User userForComment = userServiceTest.showUserByName("Paul Gabriel");
+        Issue issueTest = new Issue();
+        IssueService issueService = new IssueService();
+        Issue issueForComment = issueService.showIssueByTitle("Best issue ever");
+        Comment commentTest = new Comment("Nu imi place proiectul asta",userForComment,issueForComment);
+        CommentService commentService = new CommentService();*/
+        //commentService.addComment(commentTest);
+
+
+        // Metoda Login
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your username: ");
+        String name = scanner.nextLine();
+        Login login = new Login();
+        login.welcome(name);
+        login.whatYouWant(name);
+       // int i = scanner.nextInt();
+       // ProjectMetods projectMetods = new ProjectMetods();
+       // projectMetods.addProjectFromKeyboard(i);
+
+
 
         HibernateUtil.shutdown();
     }

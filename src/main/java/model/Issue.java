@@ -66,6 +66,22 @@ public class Issue {
         this.type = type;
     }
 
+
+    public Issue(String title ,String description,Project project,Type type){
+        this.title = title;
+        this.description = description;
+        this.project = project;
+        this.dateCreated = LocalDateTime.now();
+        this.type = type;
+    }
+
+    public Issue(String title ,String description,Project project) {
+        this.title = title;
+        this.description = description;
+        this.project = project;
+        this.dateCreated = LocalDateTime.now();
+    }
+
     @Override
     public String toString() {
         return "Issue{" +
