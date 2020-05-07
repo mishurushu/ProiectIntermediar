@@ -1,6 +1,4 @@
-import metods.IssueMetods;
-import metods.Login;
-import metods.ProjectMetods;
+import metods.*;
 import model.*;
 import repositories.*;
 
@@ -106,11 +104,34 @@ public class TestMain {
         Login login = new Login();
         login.welcome(name);
         login.whatYouWant(name);
-       // int i = scanner.nextInt();
-       // ProjectMetods projectMetods = new ProjectMetods();
-       // projectMetods.addProjectFromKeyboard(i);
-
-
+        int i = scanner.nextInt();
+        while (i != 0){
+            if ( i==1 ){
+                ProjectMetods projectMetods = new ProjectMetods();
+                projectMetods.addProjectFromKeyboard(i);
+                System.out.print("If you want to continue press 1-9 , if you want to exit press 0 ");
+                i = scanner.nextInt();
+            }else if (i == 2){
+                IssueMetods issueMetods = new IssueMetods();
+                issueMetods.addIssueFromKeyboard(i);
+                System.out.print("If you want to continue press 1-9 , if you want to exit press 0 ");
+                i = scanner.nextInt();
+            }else if (i == 3){
+                IssueMetods issueMetods = new IssueMetods();
+                issueMetods.addIssueFromKeyboard(i);
+                StatusMetods statusMetods = new StatusMetods();
+                scanner.nextLine();
+                String s = scanner.nextLine();
+                statusMetods.seeIssueStatus(i,s);
+                System.out.print("If you want to continue press 1-9 , if you want to exit press 0 ");
+                i = scanner.nextInt();
+            }else if(i == 4){
+                scanner.nextLine();
+                CommentMetods commentMetods = new CommentMetods();
+                String comment = scanner.nextLine();
+                commentMetods.addCommentToIssue(comment, i);
+            }
+        }
 
         HibernateUtil.shutdown();
     }

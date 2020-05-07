@@ -11,7 +11,7 @@ public class CommentService {
 
 
 
-    public void addComment(Comment commentService) {
+    public void addComment(String commentService) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(commentService);

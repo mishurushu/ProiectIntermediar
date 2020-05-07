@@ -25,4 +25,9 @@ public class ProjectMetods {
 
     }
 
+    public Project enterInProjectWithName(String s){
+        ProjectService projectService = new ProjectService();
+       return projectService.getProjectByName(s);
+    }
+
 }

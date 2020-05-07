@@ -1,12 +1,11 @@
 package repositories;
 
-import model.HibernateUtil;
-import model.Issue;
-import model.Type;
-import model.User;
+import model.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import javax.persistence.TypedQuery;
 
 public class IssueService {
 
@@ -18,6 +17,16 @@ public class IssueService {
         session.close();
     }
 
+    public String showIssueByTitlelikeString(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String intrebare = "select i.title from Issue i where i.title like :nume";
+        Query query = session.createQuery(intrebare);
+        query.setParameter("nume", name);
+        String issue  = (String) query.getSingleResult();
+        session.close();
+        return issue;
+    }
+
     public Issue showIssueByTitle(String name) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         String intrebare = "from Issue i where i.title like : nume";
@@ -27,6 +36,17 @@ public class IssueService {
         session.close();
         return issue;
     }
+
+    public Status showStatusByIssueTitle(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String intrebare = "select i.status from Issue i where i.title = :nume";
+        TypedQuery<Status> query = session.createQuery(intrebare);
+        query.setParameter("nume",  name);
+        Status status  =  query.getSingleResult();
+        session.close();
+        return status;
+    }
+
 
     public void editIssueByTitle(String editTitle , String title) {
         Session session = HibernateUtil.getSessionFactory().openSession();

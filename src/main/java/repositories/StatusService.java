@@ -22,14 +22,26 @@ public class StatusService {
 
     }
 
+    public Status showStatusByName(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String intrebare = "from  Status s where s.statusName like : nume";
+        TypedQuery query = session.createQuery(intrebare);
+        query.setParameter("nume", "%" + name + "%");
+        Status statuses = (Status) query.getSingleResult();
+        session.close();
+        return statuses;
+    }
+
+
+
     public List<Status> showStatus(String name) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         String intrebare = "from  Status s where s.statusName like : nume";
         Query query = session.createQuery(intrebare);
         query.setParameter("nume", "%" + name + "%");
         List<Status> statuses = query.list();
+        session.close();
         return statuses;
-
     }
 
     public void editStatusByName(String name, String oldName) {
